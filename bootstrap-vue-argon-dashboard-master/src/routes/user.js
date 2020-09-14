@@ -34,7 +34,7 @@ export const UserRoutes = [
             {
                 path: 'dashboard',
                 name: 'user-dashboard',
-                component: () => import('@/views/Dashboard.vue')
+                component: () => import('@/views/user/Dashboard.vue')
             }
         ]
     }

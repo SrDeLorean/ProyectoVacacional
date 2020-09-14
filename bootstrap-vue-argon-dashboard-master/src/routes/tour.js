@@ -35,7 +35,7 @@ export const TourRoutes = [
             {
                 path: 'dashboard',
                 name: 'tour-dashboard',
-                component: () => import('@/views/Dashboard.vue')
+                component: () => import('@/views/tour/Dashboard.vue')
             }
         ]
     }

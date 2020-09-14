@@ -35,7 +35,7 @@ export const AdminRoutes = [
             {
                 path: 'dashboard',
                 name: 'admin-dashboard',
-                component: () => import('@/views/Dashboard.vue')
+                component: () => import('@/views/admin/Dashboard.vue')
             },
             {
                 path: 'user',

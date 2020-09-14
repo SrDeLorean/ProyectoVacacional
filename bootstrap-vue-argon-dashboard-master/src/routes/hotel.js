@@ -35,7 +35,7 @@ export const HotelRoutes = [
             {
                 path: 'dashboard',
                 name: 'hotel-dashboard',
-                component: () => import('@/views/Dashboard.vue')
+                component: () => import('@/views/hotel/Dashboard.vue')
             }
         ]
     }

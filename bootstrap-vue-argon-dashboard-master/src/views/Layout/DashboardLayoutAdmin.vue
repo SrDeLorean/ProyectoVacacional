@@ -45,6 +45,7 @@
       </template>
     </side-bar>
     <div class="main-content">
+      <!--Esto imprime la ruta de donde estamos, es mejor hacerlo en la pagina-->
       <dashboard-navbar :type="$route.meta.navbarType"></dashboard-navbar>
 
       <div @click="$sidebar.displaySidebar(false)">
