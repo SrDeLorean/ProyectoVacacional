@@ -16,7 +16,7 @@
             :link="{
               name: 'User',
               path: 'user',
-              icon: 'ni ni-planet text-blue'
+              icon: 'ni ni-badge'
               }"
             >
         </sidebar-item>
