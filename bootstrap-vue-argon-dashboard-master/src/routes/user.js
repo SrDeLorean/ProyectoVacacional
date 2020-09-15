@@ -4,7 +4,7 @@ export const UserRoutes = [
     {
         path: '/user',
         redirect: 'user-dashboard',
-        component: () => import('@/views/Layout/DashboardLayoutAdmin.vue'),
+        component: () => import('@/views/Layout/DashboardLayoutUser.vue'),
         beforeEnter: (to, from, next) => {
             if (!store.getters['auth/authenticated']) {
                 return next({

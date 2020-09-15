@@ -21,6 +21,12 @@ class RolesAndPermissions extends Seeder
         Permission::create(['name' => 'update user']);
         Permission::create(['name' => 'delete user']);
 
+        //Creacion de permisos sobre el crud del usuario
+        Permission::create(['name' => 'create property']);
+        Permission::create(['name' => 'read property']);
+        Permission::create(['name' => 'update property']);
+        Permission::create(['name' => 'delete property']);
+
         //Creacion de rol y asignacion de permisos al rol de "admin"
         $role = Role::create(['name' => 'admin']);
         //permisos CRUD de usuario, todos los permisos
@@ -31,12 +37,17 @@ class RolesAndPermissions extends Seeder
 
         //Creacion de rol y asignacion de permisos al rol de "hotel"
         $role = Role::create(['name' => 'hotel']);
+        $role->givePermissionTo('create property');
+        $role->givePermissionTo('read property');
+        $role->givePermissionTo('update property');
+        $role->givePermissionTo('delete property');
 
         //Creacion de rol y asignacion de permisos al rol de "tour"
         $role = Role::create(['name' => 'tour']);
 
         //Creacion de rol y asignacion de permisos al rol de "user"
         $role = Role::create(['name' => 'user']);
+        $role->givePermissionTo('read property');
 
 
     }

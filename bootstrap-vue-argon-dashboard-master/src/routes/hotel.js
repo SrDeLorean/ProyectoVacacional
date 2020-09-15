@@ -4,7 +4,7 @@ export const HotelRoutes = [
     {
         path: '/hotel',
         redirect: 'hotel-dashboard',
-        component: () => import('@/views/Layout/DashboardLayoutAdmin.vue'),
+        component: () => import('@/views/Layout/DashboardLayoutHotel.vue'),
         beforeEnter: (to, from, next) => {
             if (!store.getters['auth/authenticated']) {
                 return next({
@@ -36,6 +36,11 @@ export const HotelRoutes = [
                 path: 'dashboard',
                 name: 'hotel-dashboard',
                 component: () => import('@/views/hotel/Dashboard.vue')
+            },
+            {
+                path: 'property',
+                name: 'hotel-property',
+                component: () => import('@/views/hotel/Property.vue')
             }
         ]
     }

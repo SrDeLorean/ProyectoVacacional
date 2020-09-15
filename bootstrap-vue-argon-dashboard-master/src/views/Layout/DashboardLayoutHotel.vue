@@ -13,8 +13,8 @@
         </sidebar-item>
         <sidebar-item
             :link="{
-              name: 'algo',
-              path: 'icons',
+              name: 'Property',
+              path: 'property',
               icon: 'ni ni-planet text-blue'
               }"
             >

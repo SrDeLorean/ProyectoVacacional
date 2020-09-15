@@ -4,7 +4,7 @@ export const TourRoutes = [
     {
         path: '/tour',
         redirect: 'tour-dashboard',
-        component: () => import('@/views/Layout/DashboardLayoutAdmin.vue'),
+        component: () => import('@/views/Layout/DashboardLayoutTour.vue'),
         beforeEnter: (to, from, next) => {
             if (!store.getters['auth/authenticated']) {
                 return next({
