@@ -4,13 +4,13 @@
     <b-card no-body>
         <b-card-header class="border-0">
             <h3 class="mb-0">Users</h3>
-            
+            <div class="float-right">
+              <b-nav pills class="nav-pills-circle">
+                <b-nav-item v-on:click="addUserCard = !addUserCard" active><i class="ni ni-fat-add"></i></b-nav-item>
+              </b-nav>
+            </div>
         </b-card-header>
-        <div>
-          <b-nav pills class="nav-pills-circle">
-            <b-nav-item v-on:click="addUserCard = !addUserCard" active><i class="ni ni-fat-add"></i></b-nav-item>
-          </b-nav>
-        </div>
+
         <el-table class="table-responsive table"
                   header-row-class-name="thead-light"
                   :data="users">
@@ -36,14 +36,19 @@
                              min-width="170px"
                              prop="edit">
               <template v-slot="{row}">
-                <button class="btn btn-warning btn-sm" @click="editUser(row.id)">Editar</button>
+                <base-button icon type="warning" @click="editUser(row.id)">
+                  <span class="btn-inner--icon"><i class="ni ni-scissors"></i></span>
+                </base-button>
+               
               </template>
             </el-table-column>
             <el-table-column label="Delete"
                              min-width="170px"
                              prop="delete">
               <template v-slot="{row}">    
-                <button class="btn btn-danger btn-sm" @click="deleteUser(row.id)">Eliminar</button>
+                <base-button icon type="danger" @click="deleteUser(row.id)">
+                  <span class="btn-inner--icon"><i class="ni ni-fat-remove"></i></span>
+                </base-button>
               </template>
             </el-table-column>
 
