@@ -11,7 +11,6 @@
           }"
         >
         </sidebar-item>
-
         <sidebar-item
             :link="{
               name: 'User',
@@ -21,7 +20,6 @@
             >
         </sidebar-item>
       </template>
-
       <template slot="links-after">
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">Documentation</h6>
