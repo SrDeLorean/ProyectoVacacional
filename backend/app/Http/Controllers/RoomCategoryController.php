@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Property_CategoryController extends Controller
+class RoomCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,20 @@ class Property_CategoryController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $room_categories = RoomCategory::all();
+            return response()->json([
+                'success' => true,
+                'message' => "Se a listado categorias de piesas con exito",
+                'data' => ['Roomcategories'=>$room_categories]
+            ], 200);
+        } catch(\Illuminate\Database\QueryException $ex){  
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al solicitar peticion a la base de datos',
+                'data' => ['error'=>$ex]
+            ], 409);
+        }
     }
 
     /**

@@ -48,21 +48,9 @@
                              min-width="140px">
             </el-table-column>
 
-            <el-table-column label="Edit"
-                             min-width="170px"
-                             prop="edit">
-              <template v-slot="{row}">
-                <router-link :to="'room/' + row.id" >Detalles</router-link>
-              </template>
-            </el-table-column>
-            <el-table-column label="Delete"
-                             min-width="170px"
-                             prop="delete">
-              <template v-slot="{row}">    
-                <base-button icon type="danger" @click="deleteProperty(row.id)">
-                  <span class="btn-inner--icon"><i class="ni ni-fat-remove"></i></span>
-                </base-button>
-              </template>
+            <el-table-column label="User"
+                             prop="user_autor"
+                             min-width="140px">
             </el-table-column>
 
         </el-table>
@@ -75,7 +63,7 @@
 
   
 
-      <form @submit.prevent="addProperty()" v-if="addPropertyCard">
+      <form @submit.prevent="addProperty(property)" v-if="addPropertyCard">
         <b-row class="form-group">
           <label for="example-search-input" class="col-md-2 col-form-label form-control-label">Name</label>
           <b-col md="10">
@@ -170,31 +158,6 @@
             console.log(error.response.data);
           } 
         });
-      },
-      addProperty(property){
-        if(this.property.name.trim() === '' || this.property.description.trim() === '' || this.property.category_property.trim() === '' || this.property.location.trim() === '' || this.property.location_description.trim() === ''){
-          alert('Debes completar todos los campos antes de guardar');
-          return;
-        }
-        let url = 'property'
-        axios.post(url, this.property, this.config)
-        .then((response) =>{
-          this.getProperties()
-        }).catch((error) => {
-          console.log(error.response.data);
-        }) 
-      },
-      editProperty(id){
-        console.log(id)
-      },
-      deleteProperty(id){
-        let url = 'property/'+id
-        axios.delete(url, this.config)
-        .then((response) =>{
-          this.getProperties()
-        }).catch((error) => {
-          console.log(error.response.data);
-        }) 
       }
     }
   }

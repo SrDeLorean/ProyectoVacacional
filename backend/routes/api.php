@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['jwt.auth'], 'prefix' => 'v1'], function () {
     Route::resource('usuario', 'UsuarioController');
     Route::resource('property', 'PropertyController');
+    Route::resource('room', 'RoomController');
 });
 
 Route::group(['middleware' => [], 'prefix' => 'v1'], function () {

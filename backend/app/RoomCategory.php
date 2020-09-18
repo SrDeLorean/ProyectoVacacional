@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PropertyCategory extends Model
+class RoomCategory extends Model
 {
     protected $fillable = [
         'name'

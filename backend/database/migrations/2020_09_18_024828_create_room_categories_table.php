@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOpinionsTable extends Migration
+class CreateRoomCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateOpinionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('opinions', function (Blueprint $table) {
+        Schema::create('room_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateOpinionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('opinions');
+        Schema::dropIfExists('room_categories');
     }
 }

@@ -6,7 +6,7 @@
         <sidebar-item
           :link="{
             name: 'Dashboard',
-            path: 'dashboard',
+            path: '/hotel/dashboard',
             icon: 'ni ni-tv-2 text-primary',
           }"
         >
@@ -14,7 +14,7 @@
         <sidebar-item
             :link="{
               name: 'Property',
-              path: 'property',
+              path: '/hotel/property',
               icon: 'ni ni-planet text-blue'
               }"
             >

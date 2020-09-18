@@ -19,6 +19,14 @@
               }"
             >
         </sidebar-item>
+        <sidebar-item
+            :link="{
+              name: 'Property',
+              path: 'property',
+              icon: 'ni ni-building'
+              }"
+            >
+        </sidebar-item>
       </template>
       <template slot="links-after">
         <hr class="my-3">

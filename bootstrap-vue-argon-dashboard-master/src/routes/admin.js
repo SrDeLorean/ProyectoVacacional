@@ -41,6 +41,11 @@ export const AdminRoutes = [
                 path: 'user',
                 name: 'admin-user',
                 component: () => import( '@/views/admin/User.vue')
+            },
+            {
+                path: 'property',
+                name: 'admin-property',
+                component: () => import( '@/views/admin/Property.vue')
             }
         ]
     }

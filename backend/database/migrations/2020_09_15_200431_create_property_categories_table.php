@@ -13,8 +13,9 @@ class CreatePropertyCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('property__categories', function (Blueprint $table) {
+        Schema::create('property_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreatePropertyCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('property__categories');
+        Schema::dropIfExists('property_categories');
     }
 }

@@ -34,6 +34,7 @@ class RolesAndPermissions extends Seeder
         $role->givePermissionTo('read user');
         $role->givePermissionTo('update user');
         $role->givePermissionTo('delete user');
+        $role->givePermissionTo('read property');
 
         //Creacion de rol y asignacion de permisos al rol de "hotel"
         $role = Role::create(['name' => 'hotel']);

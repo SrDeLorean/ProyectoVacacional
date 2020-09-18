@@ -3,17 +3,17 @@
   <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-gradient-success">
     <b-card no-body>
         <b-card-header class="border-0">
-            <h3 class="mb-0">Users</h3>
+            <h3 class="mb-0">Room</h3>
             <div class="float-right">
               <b-nav pills class="nav-pills-circle">
-                <b-nav-item v-on:click="addUserCard = !addUserCard" active><i class="ni ni-fat-add"></i></b-nav-item>
+                <b-nav-item v-on:click="addRoomCard = !addRoomCard" active><i class="ni ni-fat-add"></i></b-nav-item>
               </b-nav>
             </div>
         </b-card-header>
 
         <el-table class="table-responsive table"
                   header-row-class-name="thead-light"
-                  :data="users">
+                  :data="rooms">
             <el-table-column label="Id"
                         prop="id"
                         min-width="70px">
@@ -22,13 +22,19 @@
                              prop="name"
                              min-width="140px">
             </el-table-column>
-            <el-table-column label="Email"
-                             prop="email"
+
+            <el-table-column label="Description"
+                             prop="description"
                              min-width="200px">
             </el-table-column>
 
-            <el-table-column label="Role"
-                             prop="role"
+            <el-table-column label="Category"
+                             prop="room_category"
+                             min-width="140px">
+            </el-table-column>
+
+            <el-table-column label="property_autor"
+                             prop="property_autor"
                              min-width="140px">
             </el-table-column>
 
@@ -36,7 +42,7 @@
                              min-width="170px"
                              prop="edit">
               <template v-slot="{row}">
-                <base-button icon type="warning" @click="editUser(row.id)">
+                <base-button icon type="warning" @click="editRoom(row.id)">
                   <span class="btn-inner--icon"><i class="ni ni-scissors"></i></span>
                 </base-button>
                
@@ -46,7 +52,7 @@
                              min-width="170px"
                              prop="delete">
               <template v-slot="{row}">    
-                <base-button icon type="danger" @click="deleteUser(row.id)">
+                <base-button icon type="danger" @click="deleteRoom(row.id)">
                   <span class="btn-inner--icon"><i class="ni ni-fat-remove"></i></span>
                 </base-button>
               </template>
@@ -62,31 +68,45 @@
 
   
 
-      <form @submit.prevent="addUser(user)" v-if="addUserCard">
+      <form @submit.prevent="addRoom()" v-if="addRoomCard">
         <b-row class="form-group">
           <label for="example-search-input" class="col-md-2 col-form-label form-control-label">Name</label>
           <b-col md="10">
-            <base-input type="text" id="example-search-input" placeholder="Alonso Diaz" v-model="user.name"></base-input>
+            <base-input type="text" id="example-search-input" placeholder="Alonso Diaz" v-model="room.name"></base-input>
           </b-col>
         </b-row>
         <b-row class="form-group">
-          <label for="example-email-input" class="col-md-2 col-form-label form-control-label">Email</label>
+          <label for="example-email-input" class="col-md-2 col-form-label form-control-label">description</label>
           <b-col md="10">
-            <base-input type="email" autocomplete="username email" placeholder="example@email.com" id="example-email-input" v-model="user.email"></base-input>
-          </b-col>
-        </b-row>
-        <b-row class="form-group">
-          <label for="example-password-input"
-                class="col-md-2 col-form-label form-control-label">Role</label>
-          <b-col md="10">
-            <base-input type="text" autocomplete="current-password" placeholder="hotel" id="example-password-input" v-model="user.role"></base-input>
+            <base-input type="text"  placeholder="description" id="description" v-model="room.description"></base-input>
           </b-col>
         </b-row>
         <b-row class="form-group">
           <label for="example-password-input"
-                class="col-md-2 col-form-label form-control-label">Password</label>
+                class="col-md-2 col-form-label form-control-label">category_room</label>
           <b-col md="10">
-            <base-input type="password" autocomplete="current-password" placeholder="password" id="example-password-input" v-model="user.password"></base-input>
+            <base-input type="text" placeholder="category_room" id="category_room" v-model="room.category_room"></base-input>
+          </b-col>
+        </b-row>
+        <b-row class="form-group">
+          <label for="example-password-input"
+                class="col-md-2 col-form-label form-control-label">valoration</label>
+          <b-col md="10">
+            <base-input type="text" placeholder="valoration" id="valoration" v-model="room.valoration"></base-input>
+          </b-col>
+        </b-row>
+        <b-row class="form-group">
+          <label for="example-password-input"
+                class="col-md-2 col-form-label form-control-label">location</label>
+          <b-col md="10">
+            <base-input type="text" placeholder="location" id="location" v-model="room.location"></base-input>
+          </b-col>
+        </b-row>
+        <b-row class="form-group">
+          <label for="example-password-input"
+                class="col-md-2 col-form-label form-control-label">location_description</label>
+          <b-col md="10">
+            <base-input type="text" placeholder="location_description" id="location_description" v-model="room.location_description"></base-input>
           </b-col>
         </b-row>
         <button class="btn btn-primary" type="submit">Create</button>
@@ -108,14 +128,14 @@
     },
     data() {
       return {
-        addUserCard: false,
-        user: {
+        addRoomCard: false,
+        room: {
           name: '', 
-          email: '',
-          role: '',
-          password: ''
+          description: '',
+          room_category: '',
+          property_autor: ''
         },
-        users: [
+        rooms: [
                 ],
         currentPage: 1
       }
@@ -126,13 +146,13 @@
         })
     },
     created(){
-      this.getUser()
+      this.getRooms()
     },
     methods: {
-      getUser(){
-        let url = 'usuario'
+      getRooms(){
+        let url = 'room/'+this.$route.params.id
         axios.get(url, this.config).then((result)=>{
-            this.users = result.data.data.users;
+            this.rooms = result.data.data.rooms;
         })
         .catch((error) => {
           if (error.message == 'Network Error') {
@@ -142,33 +162,31 @@
           } 
         });
       },
-      addUser(){
-        if(this.user.name.trim() === '' || this.user.email.trim() === '' || this.user.role.trim() === '' || this.user.password.trim() === ''){
+      addRoom(){
+        if(this.room.name.trim() === '' || this.room.description.trim() === '' || this.room.room_category.trim() === '' || this.room.property_autor.trim() === ''){
           alert('Debes completar todos los campos antes de guardar');
           return;
         }
-        let url = 'usuario'
-        axios.post(url, this.user, this.config)
+        let url = 'room'
+        axios.post(url, this.room, this.config)
         .then((response) =>{
-          this.getUser()
+          this.getRoom()
         }).catch((error) => {
           console.log(error.response.data);
         }) 
       },
-      editUser(id){
+      editRoom(id){
         console.log(id)
       },
-      deleteUser(id){
-        let url = 'usuario/'+id
+      deleteRoom(id){
+        let url = 'room/'+id
         axios.delete(url, this.config)
         .then((response) =>{
-          this.getUser()
+          this.getRoom()
         }).catch((error) => {
           console.log(error.response.data);
         }) 
       }
-
-    },
-    
+    }
   }
 </script>

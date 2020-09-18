@@ -41,6 +41,11 @@ export const HotelRoutes = [
                 path: 'property',
                 name: 'hotel-property',
                 component: () => import('@/views/hotel/Property.vue')
+            },
+            {
+                path: "room/:id", 
+                name: "hotel-room",
+                component: () => import('@/views/hotel/Room.vue')
             }
         ]
     }

@@ -17,11 +17,13 @@ class CreatePropertiesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('description');
-            $table->integer('category_property');
+            $table->biginteger('category_property')->unsigned();
+            $table->foreign('category_property')->references('id')->on('property_categories');
             $table->float('valoration');
             $table->string('location');
             $table->string('location_description');
-            $table->integer('user_autor');
+            $table->biginteger('user_autor')->unsigned();
+            $table->foreign('user_autor')->references('id')->on('users');
             $table->timestamps();
         });
     }
